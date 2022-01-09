@@ -1,5 +1,5 @@
-import Link from "next/link";
-import { ReactNode } from "react";
+import Link from 'next/link'
+import { ReactNode } from 'react'
 
 const Layout = ({ children }: Props) => {
   return (
@@ -14,11 +14,11 @@ const Layout = ({ children }: Props) => {
       </nav>
       {children}
     </div>
-  );
-};
+  )
+}
 
 type Props = {
-  children?: ReactNode;
-};
+  children?: ReactNode
+}
 
-export default Layout;
+export default Layout

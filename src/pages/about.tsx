@@ -1,5 +1,5 @@
-import type { NextPage } from "next";
-import Head from "next/head";
+import type { NextPage } from 'next'
+import Head from 'next/head'
 
 const About: NextPage = () => {
   return (
@@ -11,7 +11,7 @@ const About: NextPage = () => {
         <h1>ここは概要ページです</h1>
       </main>
     </div>
-  );
-};
+  )
+}
 
-export default About;
+export default About
