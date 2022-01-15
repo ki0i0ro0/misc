@@ -5,17 +5,11 @@ import {
   InputControl,
   NumberInputControl,
   SubmitButton,
-  SwitchControl,
-  TextareaControl,
 } from "formik-chakra-ui";
 import React from "react";
 import { beverageFormSchema } from "../validators/BeverageFormSchema";
 
-export default function BeverageForm({
-  initialValues,
-  onSubmit,
-  type = "create",
-}) {
+export default function BookForm({ initialValues, onSubmit, type = "create" }) {
   return (
     <Formik
       initialValues={initialValues}
@@ -25,16 +19,10 @@ export default function BeverageForm({
       {(props) => (
         <Form>
           {/* name */}
-          <InputControl name="name" label="Beverage Name" isRequired />
-
-          {/* description */}
-          <TextareaControl name="description" label="Description" />
+          <InputControl name="name" label="Book Name" isRequired />
 
           {/* price */}
-          <NumberInputControl name="price" label="Price" />
-
-          {/* isRecommend */}
-          <SwitchControl name="isRecommend" label="Recommend" />
+          <NumberInputControl name="bookNo" label="Book No." />
 
           {/* create new beverage button. */}
           <Stack>

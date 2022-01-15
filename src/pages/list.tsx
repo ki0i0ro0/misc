@@ -1,4 +1,4 @@
-import { AddIcon, DeleteIcon, EditIcon, StarIcon } from "@chakra-ui/icons";
+import { AddIcon, DeleteIcon, EditIcon } from "@chakra-ui/icons";
 import {
   Box,
   Button,
@@ -18,14 +18,12 @@ import {
 } from "@chakra-ui/react";
 import Router from "next/router";
 import React, { useEffect, useState } from "react";
-import BackToHome from "../components/BackToHome";
 import DeleteDialog from "../components/DeleteDialog";
 import styles from "../styles/Home.module.css";
-import { BeverageGridData } from "../types/beverage";
-import axios from "../util/customAxios";
+import { BookGridData } from "../types/book";
 
 export default function List() {
-  const [tableData, setTableData] = useState<BeverageGridData[]>([]);
+  const [tableData, setTableData] = useState<BookGridData[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [editedId, setEditedId] = useState<string>(null);
   const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
@@ -39,10 +37,10 @@ export default function List() {
   // events
   const fetchTableData = async () => {
     setIsLoading(true);
-    const res = await axios.get("/api/beverages");
-
+    const books = localStorage.getItem("books");
+    let booksArray: BookGridData[] = JSON.parse(books) ?? [];
     setIsLoading(false);
-    setTableData(res.data);
+    setTableData(booksArray);
   };
 
   const routeCreate = (e): void => {
@@ -58,6 +56,18 @@ export default function List() {
     });
   };
 
+  const handleIncrement = async (e) => {
+    const id = e.currentTarget.getAttribute("data-row-no");
+    const book = tableData.find((v) => v.id === +id);
+    if (book) {
+      book.bookNo = +book.bookNo + 1;
+    }
+    localStorage.setItem("books", JSON.stringify(tableData));
+    // re-fetch
+    setTableData([]);
+    await fetchTableData();
+  };
+
   const rowDeleteClicked = (e): void => {
     const id: string = e.currentTarget.getAttribute("data-row-no");
     setEditedId(id);
@@ -67,8 +77,10 @@ export default function List() {
   const handleDelete = async () => {
     setIsDeleteDialogOpen(false);
 
-    // delete beverage
-    await axios.delete(`/api/beverage/${editedId}`);
+    // delete book
+    // await axios.delete(`/api/book/${editedId}`);
+    const books = tableData.filter((v) => !(v.id === +editedId));
+    localStorage.setItem("books", JSON.stringify(books));
 
     // re-fetch
     setTableData([]);
@@ -76,7 +88,7 @@ export default function List() {
 
     // success toast
     toast({
-      title: "Delete Successed !",
+      title: "Delete Succeeded !",
       description: "We've deleted beverage you clicked.",
       status: "success",
       duration: 3000,
@@ -88,19 +100,6 @@ export default function List() {
   return (
     <div className={styles.container}>
       <main className={styles.main}>
-        {/* link to home. */}
-        <BackToHome></BackToHome>
-
-        {/* Starbucks logo */}
-        <Box mt="5" mb="2">
-          <Image
-            borderRadius="full"
-            boxSize="150px"
-            src="/starbucks-logo.png"
-            alt="StarBucks_logo"
-          />
-        </Box>
-
         {/* title */}
         <Heading
           maxWidth="80vw"
@@ -109,7 +108,7 @@ export default function List() {
           textAlign="center"
           color="gray.600"
         >
-          みんなのカスタマイズをチェックしましょう.
+          Let’s check your books!
         </Heading>
 
         {/* add button */}
@@ -124,7 +123,7 @@ export default function List() {
           mt="3"
           mr="3"
         >
-          Add Beverage
+          Add New Book
         </Button>
         {/* </Flex> */}
 
@@ -132,16 +131,15 @@ export default function List() {
         <Box width={["100vw", "100vw", "80vw", "60vw"]} my="5">
           <Table variant="striped" size="sm">
             <TableCaption placement="top" mb="3">
-              みんなのカスタマイズ一覧
+              Book List
             </TableCaption>
             <Thead>
               <Tr>
-                <Th>名前</Th>
-                <Th>説明</Th>
-                <Th isNumeric>価格</Th>
-                <Th>★</Th>
-                <Th>編集</Th>
-                <Th>削除</Th>
+                <Th>Name</Th>
+                <Th isNumeric>No.</Th>
+                <Th>Increment</Th>
+                <Th>Edit</Th>
+                <Th>Delete</Th>
               </Tr>
             </Thead>
             <Tbody>
@@ -149,15 +147,23 @@ export default function List() {
                 return (
                   <Tr key={data.id}>
                     <Td>{data.name}</Td>
-                    <Td>{data.description}</Td>
-                    <Td isNumeric>
-                      {data.price ? data.price.toLocaleString() : null}
-                    </Td>
-                    <Td>
+                    <Td isNumeric>{data.bookNo.toLocaleString()}</Td>
+                    {/* <Td>
                       {data.isRecommend && (
                         <StarIcon w={4} h={4} color="teal.500" />
                       )}
+                    </Td> */}
+                    <Td>
+                      <IconButton
+                        onClick={handleIncrement}
+                        data-row-no={data.id}
+                        colorScheme="blue"
+                        aria-label="edit_icon"
+                        size="sm"
+                        icon={<EditIcon />}
+                      />
                     </Td>
+
                     <Td>
                       <IconButton
                         onClick={handleEdit}

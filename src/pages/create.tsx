@@ -2,35 +2,37 @@ import { Box, Heading, Image, useToast } from "@chakra-ui/react";
 import Router from "next/router";
 import React from "react";
 import BackToList from "../components/BackToList";
-import BeverageForm from "../components/BeverageForm";
+import BookForm from "../components/BookForm";
 import styles from "../styles/Home.module.css";
-import { BeverageFormData } from "../types/beverage";
-import axios from "../util/customAxios";
+import { BookFormData, BookGridData } from "../types/book";
 
 export default function Create() {
   const toast = useToast();
 
   // values for Formik.
-  const createValues = (): BeverageFormData => {
+  const createValues = (): BookFormData => {
     return {
       name: "",
-      description: "",
-      price: "",
-      isRecommend: false,
+      bookNo: 1,
     };
   };
 
   const initialValues = createValues();
 
   // events
-  const createBeverage = async (values: BeverageFormData, actions) => {
-    const body = {
+  const createBook = async (values: BookFormData, actions) => {
+    const books = localStorage.getItem("books");
+
+    const booksArray: BookGridData[] = JSON.parse(books) ?? [];
+    const body: BookGridData = {
+      id: booksArray.length + 1,
       name: values.name,
-      description: values.description,
-      price: Number(values.price),
-      isRecommend: values.isRecommend,
+      bookNo: values.bookNo,
     };
-    await axios.post("/api/beverages", body);
+
+    booksArray.push(body);
+
+    localStorage.setItem("books", JSON.stringify(booksArray));
 
     // form reset
     Object.assign(values, createValues());
@@ -60,16 +62,6 @@ export default function Create() {
         {/* link to home. */}
         <BackToList></BackToList>
 
-        {/* Starbucks logo */}
-        <Box mt="5" mb="2">
-          <Image
-            borderRadius="full"
-            boxSize="150px"
-            src="/starbucks-logo.png"
-            alt="StarBucks_logo"
-          />
-        </Box>
-
         {/* title */}
         <Heading
           maxWidth="80vw"
@@ -78,7 +70,7 @@ export default function Create() {
           textAlign="center"
           color="gray.600"
         >
-          新しいメニューを登録しましょう.
+          Let"s add a new book.
         </Heading>
 
         {/* Form */}
@@ -90,11 +82,11 @@ export default function Create() {
             "40vw", // 62em+
           ]}
         >
-          <BeverageForm
+          <BookForm
             initialValues={initialValues}
-            onSubmit={createBeverage}
+            onSubmit={createBook}
             type="create"
-          ></BeverageForm>
+          ></BookForm>
         </Box>
       </main>
     </div>
