@@ -38,4 +38,7 @@ export default {
   build: {
     transpile: [/^element-ui/],
   },
+
+  // APIの設定
+  serverMiddleware: ['~/api/'],
 }
