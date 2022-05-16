@@ -2,6 +2,9 @@ const { ApolloServer, gql } = require('apollo-server')
 const { RESTDataSource } = require('apollo-datasource-rest')
 
 const { default: axios } = require('axios')
+const { PrismaClient } = require('@prisma/client')
+
+const prisma = new PrismaClient()
 
 const typeDefs = gql`
   type User {
@@ -33,8 +36,8 @@ const users = [
 const resolvers = {
   Query: {
     hello: (_, args) => `Hello ${args.name}`,
-    users: async (_, __, { dataSources }) => {
-      return dataSources.jsonPlaceAPI.getUsers()
+    users: () => {
+      return prisma.user.findMany()
     },
     user: async (_, args, { dataSources }) => {
       return dataSources.jsonPlaceAPI.getUser(args.id)
