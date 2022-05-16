@@ -6,12 +6,21 @@ const typeDefs = gql`
     id: ID!
     name: String!
     email: String!
+    myPosts: [Post]
+  }
+
+  type Post {
+    id: ID!
+    title: String!
+    body: String!
+    userId: ID!
   }
 
   type Query {
     hello(name: String!): String
     users: [User]
     user(id: ID!): User
+    posts: [Post]
   }
 `
 const users = [
@@ -27,8 +36,19 @@ const resolvers = {
       return response.data
     },
     user: async (parent, args) => {
-      const response = await axios.get(`https://jsonplaceholder.typicode.com/users/${args.id}`)
+      let response = await axios.get(`https://jsonplaceholder.typicode.com/users/${args.id}`)
       return response.data
+    },
+    posts: async () => {
+      const response = await axios.get('https://jsonplaceholder.typicode.com/posts')
+      return response.data
+    },
+  },
+  User: {
+    myPosts: async (parent) => {
+      const response = await axios.get('https://jsonplaceholder.typicode.com/posts')
+      const myPosts = response.data.filter((post) => post.userId == parent.id)
+      return myPosts
     },
   },
 }
