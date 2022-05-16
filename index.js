@@ -21,6 +21,12 @@ const typeDefs = gql`
     userId: ID!
   }
 
+  type Mutation {
+    createUser(name: String!, email: String!): User
+    updateUser(id: Int!, name: String!): User
+    deleteUser(id: Int!): User
+  }
+
   type Query {
     hello(name: String!): String
     users: [User]
@@ -51,6 +57,31 @@ const resolvers = {
       const posts = await dataSources.jsonPlaceAPI.getPosts()
       const myPosts = posts.filter((post) => post.userId == parent.id)
       return myPosts
+    },
+  },
+  Mutation: {
+    createUser: (_, args) => {
+      return prisma.user.create({
+        data: {
+          name: args.name,
+          email: args.email,
+        },
+      })
+    },
+    updateUser: (_, args) => {
+      return prisma.user.update({
+        where: {
+          id: args.id,
+        },
+        data: {
+          name: args.name,
+        },
+      })
+    },
+    deleteUser: (_, args) => {
+      return prisma.user.delete({
+        where: { id: args.id },
+      })
     },
   },
 }
