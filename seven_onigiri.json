@@ -1,0 +1,136 @@
+{
+    "手巻おにぎり": {
+        "具たっぷり手巻 ツナマヨネーズ": {
+            "tax-exclude": "107",
+            "tax-include": "115"
+        },
+        "具たっぷり手巻海老マヨネーズ": {
+            "tax-exclude": "121",
+            "tax-include": "130"
+        },
+        "手巻おにぎり 熟成仕立て紅しゃけ": {
+            "tax-exclude": "130",
+            "tax-include": "140"
+        },
+        "具たっぷり手巻牛めし": {
+            "tax-exclude": "130",
+            "tax-include": "140"
+        },
+        "手巻おにぎり たまごが美味しい玉子かけ風御飯": {
+            "tax-exclude": "112",
+            "tax-include": "120"
+        },
+        "手巻おにぎり わさび海苔": {
+            "tax-exclude": "121",
+            "tax-include": "130"
+        },
+        "手巻おにぎり おかかづくし香ばし醤油仕立て": {
+            "tax-exclude": "102",
+            "tax-include": "110"
+        },
+        "手巻おにぎり 北海道産日高昆布": {
+            "tax-exclude": "102",
+            "tax-include": "110"
+        },
+        "手巻おにぎり 熟成仕立て紀州南高梅": {
+            "tax-exclude": "102",
+            "tax-include": "110"
+        },
+        "手巻おにぎり 熟成仕立て辛子明太子": {
+            "tax-exclude": "130",
+            "tax-include": "140"
+        },
+        "手巻おにぎり 熟成すじこ醤油漬け ": {
+            "tax-exclude": "139",
+            "tax-include": "150"
+        }
+    },
+    "直巻おむすび": {
+        "直巻おむすび 北海道産焼しゃけ": {
+            "tax-exclude": "139",
+            "tax-include": "150"
+        },
+        "直巻おむすび 昆布醤油仕立て生たらこ": {
+            "tax-exclude": "139",
+            "tax-include": "150"
+        },
+        "直巻おむすび 生姜香る！牛そぼろ": {
+            "tax-exclude": "139",
+            "tax-include": "150"
+        },
+        "直巻おむすび 鶏五目ごはん": {
+            "tax-exclude": "121",
+            "tax-include": "130"
+        },
+        "具たっぷり直巻 和風ツナマヨネーズ": {
+            "tax-exclude": "107",
+            "tax-include": "115"
+        }
+    },
+    "金のおむすび": {
+        "金のおむすび 炭火で炙った紅鮭はらみ": {
+            "tax-exclude": "195",
+            "tax-include": "210"
+        },
+        "金のおむすび 熟成吟醸醤油仕立て いくら醤油漬": {
+            "tax-exclude": "204",
+            "tax-include": "220"
+        },
+        "金のおむすび 炙り明太子": {
+            "tax-exclude": "195",
+            "tax-include": "210"
+        }
+    },
+    "その他のおむすび": {
+        "黒胡椒香る！牛焼飯おむすび": {
+            "tax-exclude": "121",
+            "tax-include": "130"
+        },
+        "焼たらこバター醤油おむすび": {
+            "tax-exclude": "121",
+            "tax-include": "130"
+        },
+        "もち麦もっちり！梅こんぶおむすび": {
+            "tax-exclude": "112",
+            "tax-include": "120"
+        },
+        "THEセブンチャーハンおむすび": {
+            "tax-exclude": "121",
+            "tax-include": "130"
+        },
+        "燻製仕立てのソーセージおむすび": {
+            "tax-exclude": "130",
+            "tax-include": "140"
+        },
+        "こんがり焼いた 焼おにぎり（紅鮭入り）": {
+            "tax-exclude": "121",
+            "tax-include": "130"
+        },
+        "ふっくら仕上げた五目おこわおむすび": {
+            "tax-exclude": "121",
+            "tax-include": "130"
+        },
+        "ふっくら仕上げた舞茸おこわおむすび": {
+            "tax-exclude": "121",
+            "tax-include": "130"
+        },
+        "ふっくら仕上げた赤飯おこわおむすび": {
+            "tax-exclude": "121",
+            "tax-include": "130"
+        },
+        "おむすび＆おかずセット（焼鮭・ツナマヨネーズ）": {
+            "tax-exclude": "276",
+            "tax-include": "298"
+        },
+        "鶏づくしセット": {
+            "tax-exclude": "241",
+            "tax-include": "260"
+        }
+    },
+    "銀しゃりむすび": {
+        "銀しゃりむすび 塩むすび": {
+            "tax-exclude": "102",
+            "tax-include": "110"
+        }
+    }
+}
