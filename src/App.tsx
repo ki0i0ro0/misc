@@ -1,29 +1,24 @@
 // in src/App.js
-import * as React from 'react'
-import { Admin, Resource } from 'react-admin'
-import { UserList } from './users'
-import jsonServerProvider from 'ra-data-json-server'
-import { PostList, PostEdit, PostCreate } from './posts'
 import PostIcon from '@mui/icons-material/Book'
 import UserIcon from '@mui/icons-material/Group'
-import Dashboard from './Dashboard'
+import jsonServerProvider from 'ra-data-json-server'
+import { Admin, Layout, Resource } from 'react-admin'
 import authProvider from './authProvider'
-import { ThemeOptions } from '@mui/material'
+import Dashboard from './Dashboard'
+import { MyAppBar } from './MyAppBar'
+import { PostCreate, PostEdit, PostList } from './posts'
+import { UserList } from './users'
+
+const MyLayout = (props: any) => <Layout {...props} appBar={MyAppBar} />
+
 const dataProvider = jsonServerProvider('https://jsonplaceholder.typicode.com')
-import { defaultTheme } from 'react-admin'
-const theme: ThemeOptions = {
-  ...defaultTheme,
-  palette: {
-    mode: 'dark', // Switching the dark mode on is a single property value change.
-  },
-}
 
 const App = () => (
   <Admin
     dashboard={Dashboard}
     authProvider={authProvider}
-    theme={theme}
     dataProvider={dataProvider}
+    layout={MyLayout}
   >
     <Resource name="posts" list={PostList} edit={PostEdit} create={PostCreate} icon={PostIcon} />
     <Resource name="users" list={UserList} icon={UserIcon} />
