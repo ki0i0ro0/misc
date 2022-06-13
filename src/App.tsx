@@ -8,11 +8,23 @@ import PostIcon from '@mui/icons-material/Book'
 import UserIcon from '@mui/icons-material/Group'
 import Dashboard from './Dashboard'
 import authProvider from './authProvider'
-
+import { ThemeOptions } from '@mui/material'
 const dataProvider = jsonServerProvider('https://jsonplaceholder.typicode.com')
+import { defaultTheme } from 'react-admin'
+const theme: ThemeOptions = {
+  ...defaultTheme,
+  palette: {
+    mode: 'dark', // Switching the dark mode on is a single property value change.
+  },
+}
 
 const App = () => (
-  <Admin dashboard={Dashboard} authProvider={authProvider} dataProvider={dataProvider}>
+  <Admin
+    dashboard={Dashboard}
+    authProvider={authProvider}
+    theme={theme}
+    dataProvider={dataProvider}
+  >
     <Resource name="posts" list={PostList} edit={PostEdit} create={PostCreate} icon={PostIcon} />
     <Resource name="users" list={UserList} icon={UserIcon} />
   </Admin>
