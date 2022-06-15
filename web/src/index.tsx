@@ -1,15 +1,8 @@
-import React from 'react'
-import { AppRegistry, View, Text } from 'react-native'
+import { AppRegistry } from 'react-native'
+import App from './App'
 
-const App = () => {
-  return (
-    <View>
-      <Text>Hello</Text>
-    </View>
-  )
-}
+AppRegistry.registerComponent('App', () => App)
 
-AppRegistry.registerComponent('sample-app', () => App)
-AppRegistry.runApplication('sample-app', {
+AppRegistry.runApplication('App', {
   rootTag: document.getElementById('root'),
 })
