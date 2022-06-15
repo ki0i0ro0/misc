@@ -10,6 +10,6 @@
     "nohoist": []
   },
   "dependencies": {
-    "react-native": "0.62.0"
+    "react-native": "^0.68.2"
   }
 }
