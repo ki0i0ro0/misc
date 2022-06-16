@@ -23,13 +23,16 @@ function App() {
           resizeMode="contain"
           style={styles.logo}
         />
+        {/* @ts-ignore */}
         <Text style={styles.title}>React Native for Web</Text>
       </View>
+      {/* @ts-ignore */}
       <Text style={styles.text}>
         This is an example of an app built with{' '}
         <Link href="https://github.com/facebook/create-react-app">Create React App</Link> and{' '}
         <Link href="https://github.com/necolas/react-native-web">React Native for Web</Link>
       </Text>
+      {/* @ts-ignore */}
       <Text style={styles.text}>
         To get started, edit{' '}
         <Link href="https://codesandbox.io/s/q4qymyp2l6/" style={styles.code}>
