@@ -1,27 +1,44 @@
-import { FAB, List } from 'react-native-paper'
-import { useNavigation } from '@react-navigation/native'
 import React, { useState, useEffect } from 'react'
-import { View, StyleSheet } from 'react-native'
+import { StyleSheet, View, FlatList } from 'react-native'
+import { List, FAB } from 'react-native-paper'
+import { useNavigation } from '@react-navigation/native'
+import format from 'date-fns/format'
 import { loadAll } from './store'
+
 export const MainScreen = () => {
   const navigation = useNavigation()
   const [memos, setMemos] = useState([])
 
   useEffect(() => {
     const initialize = async () => {
-      const newMemos = await loadAll() // (2)
+      const newMemos = await loadAll()
       setMemos(newMemos)
     }
-    const unsubscribe = navigation.addListener('focus', initialize) // (1)
+
+    const unsubscribe = navigation.addListener('focus', initialize)
+
     return unsubscribe
   }, [navigation])
 
   const onPressAdd = () => {
-    navigation.navigate('Compose') // (3)
+    navigation.navigate('Compose')
   }
 
   return (
     <View style={styles.container}>
+      <FlatList
+        style={styles.list}
+        data={memos}
+        keyExtractor={(item) => `${item.createdAt}`}
+        renderItem={({ item }) => (
+          <List.Item
+            title={item.text}
+            titleNumberOfLines={5}
+            description={`作成日時: ${format(item.createdAt, 'yyyy.MM.dd HH:mm')}`}
+            descriptionStyle={{ textAlign: 'right' }}
+          />
+        )}
+      />
       <FAB
         style={{
           position: 'absolute',
@@ -38,7 +55,8 @@ export const MainScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
+  },
+  list: {
+    flex: 1,
   },
 })
