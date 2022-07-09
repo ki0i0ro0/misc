@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { StyleSheet, View, FlatList } from 'react-native'
 import { List, FAB } from 'react-native-paper'
 import { useNavigation } from '@react-navigation/native'
@@ -7,11 +7,11 @@ import { loadAll } from './store'
 
 export const MainScreen = () => {
   const navigation = useNavigation()
-  const [memos, setMemos] = useState([])
+  const [memos, setMemos] = useState<any[]>([])
 
   useEffect(() => {
     const initialize = async () => {
-      const newMemos = await loadAll()
+      const newMemos: any[] = await loadAll()
       setMemos(newMemos)
     }
 
@@ -21,7 +21,7 @@ export const MainScreen = () => {
   }, [navigation])
 
   const onPressAdd = () => {
-    navigation.navigate('Compose')
+    navigation.navigate('Compose' as never)
   }
 
   return (

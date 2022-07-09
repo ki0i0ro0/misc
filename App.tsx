@@ -1,4 +1,3 @@
-// 省略
 import { MainScreen } from './src/MainScreen'
 import { ComposeScreen } from './src/ComposeScreen'
 import React from 'react'
@@ -20,7 +19,6 @@ export default function App() {
               title: 'メモ帳',
             }}
           />
-          {/* (1) */}
           <Stack.Screen
             name="Compose"
             component={ComposeScreen}
