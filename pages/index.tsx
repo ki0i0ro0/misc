@@ -1,11 +1,19 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
+import { useRouter } from 'next/router'
 import styles from '../styles/Home.module.css'
 
 const TODO_HEADERS = ['ID', 'title', 'Created At', 'edit', 'delete']
 const sampleData = [{ id: 1, title: 'test', createdAt: new Date().toLocaleDateString() }]
+
 const Home: NextPage = () => {
+  const router = useRouter()
+
+  const handleDelete = (id: number) => {
+    router.push(`/delete/${id}`)
+  }
+
   const tableHeader = (
     <tr>
       {TODO_HEADERS.map((v) => (
@@ -22,7 +30,7 @@ const Home: NextPage = () => {
         <button>edit</button>
       </td>
       <td>
-        <button>delete</button>
+        <button onClick={() => handleDelete(v.id)}>delete</button>
       </td>
     </tr>
   ))
