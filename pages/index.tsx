@@ -10,6 +10,10 @@ const sampleData = [{ id: 1, title: 'test', createdAt: new Date().toLocaleDateSt
 const Home: NextPage = () => {
   const router = useRouter()
 
+  const handleEdit = (id: number) => {
+    router.push(`/edit/${id}`)
+  }
+
   const handleDelete = (id: number) => {
     router.push(`/delete/${id}`)
   }
@@ -27,7 +31,7 @@ const Home: NextPage = () => {
       <td>{v.title}</td>
       <td>{v.createdAt}</td>
       <td>
-        <button>edit</button>
+        <button onClick={() => handleEdit(v.id)}>edit</button>
       </td>
       <td>
         <button onClick={() => handleDelete(v.id)}>delete</button>

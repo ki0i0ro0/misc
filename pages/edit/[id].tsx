@@ -1,14 +1,22 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
-import { useState } from 'react'
-import styles from '../styles/Home.module.css'
+import { useRouter } from 'next/router'
+import { useEffect, useState } from 'react'
+import styles from '../../styles/Home.module.css'
 
 const Edit: NextPage = () => {
   const title = 'Todo App Edit'
 
+  const router = useRouter()
+  const { id } = router.query
+
+  useEffect(() => {}, [])
+
   const [state, setSate] = useState({ value: '' })
+
   const handleSubmit = () => {}
+
   const handleChange = (e: any) => {
     setSate({ value: e.target.value })
   }
@@ -28,12 +36,13 @@ const Edit: NextPage = () => {
 
         <div className={styles.grid}>
           <div className={styles.card}>
+            <p>{id}を編集</p>
             <form onSubmit={handleSubmit}>
               <label>
                 title:
                 <input type="text" value={state.value} onChange={handleChange} />
               </label>
-              <input type="submit" value="Submit" />
+              <input type="submit" value="OK" />
             </form>
           </div>
         </div>
