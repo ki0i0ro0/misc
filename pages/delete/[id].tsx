@@ -10,10 +10,22 @@ const Delete: NextPage = () => {
   const description = 'ToDoを削除'
 
   const router = useRouter()
-  // パスパラメータから値を取得
   const { id } = router.query
-  const handleOK = () => {}
-  const handleCancel = () => {}
+
+  const handleOK = () => {
+    fetch(`/api/${id}`, { method: 'DELETE' })
+      .then((res) => {
+        router.push('/')
+      })
+      .catch((res) => {
+        alert(res)
+        router.push('/')
+      })
+  }
+
+  const handleCancel = () => {
+    router.push('/')
+  }
 
   return (
     <div className={styles.container}>
@@ -33,7 +45,7 @@ const Delete: NextPage = () => {
             <p>{id}を削除しますか？</p>
             <button onClick={handleOK}>OK</button>
             <Link href="/">
-              <button>Cancel</button>
+              <button onClick={handleCancel}>Cancel</button>
             </Link>
           </div>
         </div>
