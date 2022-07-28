@@ -15,7 +15,24 @@ const Edit: NextPage = () => {
 
   const [state, setSate] = useState({ value: '' })
 
-  const handleSubmit = () => {}
+  const handleSubmit = (event: any) => {
+    event.preventDefault()
+    fetch(`/api/todos/${id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ title: state.value }),
+    })
+      .then((res) => {
+        alert('OK')
+        router.push('/')
+      })
+      .catch((res) => {
+        alert('NG')
+        router.push('/')
+      })
+  }
 
   const handleChange = (e: any) => {
     setSate({ value: e.target.value })
