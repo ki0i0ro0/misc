@@ -2,13 +2,25 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
+import { useEffect, useState } from 'react'
 import styles from '../styles/Home.module.css'
 
 const TODO_HEADERS = ['ID', 'title', 'Created At', 'edit', 'delete']
-const sampleData = [{ id: 1, title: 'test', createdAt: new Date().toLocaleDateString() }]
 
 const Home: NextPage = () => {
   const router = useRouter()
+  const [data, setData] = useState<any[]>([])
+
+  useEffect(() => {
+    fetch('/api/todos')
+      .then((res) => res.json())
+      .catch((err) => {
+        alert(err)
+      })
+      .then((res) => {
+        setData(res.todos)
+      })
+  }, [])
 
   const handleEdit = (id: number) => {
     router.push(`/edit/${id}`)
@@ -25,7 +37,7 @@ const Home: NextPage = () => {
       ))}
     </tr>
   )
-  const tableRows = sampleData.map((v) => (
+  const tableRows = data.map((v) => (
     <tr key={v.id}>
       <td>{v.id}</td>
       <td>{v.title}</td>
