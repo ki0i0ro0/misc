@@ -30,6 +30,10 @@ const Home: NextPage = () => {
     router.push(`/delete/${id}`)
   }
 
+  const handleCreate = () => {
+    router.push(`/create`)
+  }
+
   const tableHeader = (
     <tr>
       {TODO_HEADERS.map((v) => (
@@ -61,7 +65,7 @@ const Home: NextPage = () => {
 
       <main className={styles.main}>
         <h1 className={styles.title}>Todo App</h1>
-
+        <button onClick={handleCreate}>新規作成</button>
         <p className={styles.description}>Nextで作ったToDoアプリ</p>
         <div className={styles.grid}>
           <table className={styles.card}>
