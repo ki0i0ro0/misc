@@ -8,49 +8,24 @@ class Scanner extends Component {
         inputStream: {
           type: 'LiveStream',
           constraints: {
-            width: 200,
-            height: 320,
+            width: 320,
+            height: 200,
+            // バックカメラの利用を設定. (フロントカメラは"user")
             facingMode: 'environment',
           },
-          //   area: { // defines rectangle of the detection/localization area
-          //     top: "10%",    // top offset
-          //     right: "10%",  // right offset
-          //     left: "10%",   // left offset
-          //     bottom: "10%"  // bottom offset
-          //   },
-        },
-        locator: {
-          halfSample: true,
-          patchSize: 'large', // x-small, small, medium, large, x-large
-          debug: {
-            showCanvas: true,
-            showPatches: false,
-            showFoundPatches: false,
-            showSkeleton: false,
-            showLabels: false,
-            showPatchLabels: false,
-            showRemainingPatchLabels: false,
-            boxFromPatches: {
-              showTransformed: true,
-              showTransformedBox: true,
-              showBB: true,
-            },
+          // 検出範囲の指定: 上下30%は対象外
+          area: {
+            top: "30%",    // top offset
+            right: "0%",  // right offset
+            left: "0%",   // left offset
+            bottom: "30%"  // bottom offset
           },
         },
+        // 解析するワーカ数の設定
         numOfWorkers: 4,
+        // バーコードの種類を設定: ISBNは"ean_reader"
         decoder: {
-          readers: [
-            {
-              format: 'ean_reader',
-              config: {},
-            },
-          ],
-          debug: {
-            drawBoundingBox: true,
-            showFrequency: true,
-            drawScanline: true,
-            showPattern: true,
-          },
+          readers: ['ean_reader'],
         },
         locate: true,
       },
