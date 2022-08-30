@@ -1,33 +1,23 @@
-import { useEffect, useState } from 'react'
 import './App.css'
-import { ApolloClient, InMemoryCache, gql } from '@apollo/client'
+import { gql, useQuery } from '@apollo/client'
 
-const client = new ApolloClient({
-  uri: 'http://localhost:4000/graphql',
-  cache: new InMemoryCache(),
-})
+const GET_HELLO = gql`
+  query {
+    hellos {
+      text
+    }
+  }
+`
 
 function App() {
-  const [message, setMessage] = useState('')
-  useEffect(() => {
-    // データ取得
-    const result = client.query({
-      query: gql`
-        query {
-          hellos {
-            text
-          }
-        }
-      `,
-    })
+  const { loading, error, data } = useQuery(GET_HELLO, {})
 
-    result.then((r) => {
-      setMessage(JSON.stringify(r.data.hellos))
-    })
-  }, [])
+  if (loading) return <p>Loading ...</p>
+  if (error) return <p>Error</p>
+
   return (
     <div className="App">
-      <p>{message}</p>
+      <p>{data.hellos ? JSON.stringify(data.hellos) : 'N/A'}</p>
     </div>
   )
 }
