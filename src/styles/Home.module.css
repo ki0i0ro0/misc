@@ -127,3 +127,7 @@
     filter: invert(1);
   }
 }
+
+.height100 {
+  height: 100vh;
+}
