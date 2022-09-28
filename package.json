@@ -19,6 +19,7 @@
     "@vitejs/plugin-vue": "^3.0.1",
     "@vue/cli": "^4.5.19",
     "@vue/cli-plugin-eslint": "~5.0.0",
+    "@vue/cli-plugin-typescript": "~5.0.0",
     "@vue/eslint-config-airbnb": "^6.0.0",
     "@vue/eslint-config-prettier": "^7.0.0",
     "@vue/eslint-config-typescript": "^11.0.0",
