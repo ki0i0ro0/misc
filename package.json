@@ -2,23 +2,30 @@
   "name": "create-vue-test",
   "version": "0.0.0",
   "scripts": {
-    "dev": "vite",
+    "serve": "vite preview",
     "build": "vite build",
-    "preview": "vite preview --port 4173",
-    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore"
+    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore",
+    "dev": "vite",
+    "preview": "vite preview --port 4173"
   },
   "dependencies": {
+    "@mdi/font": "5.9.55",
     "pinia": "^2.0.21",
+    "roboto-fontface": "*",
     "vue": "^3.2.37",
-    "vue-router": "^4.1.2"
+    "vue-router": "^4.1.2",
+    "vuetify": "npm:@vuetify/nightly@next",
+    "webfontloader": "^1.0.0"
   },
   "devDependencies": {
     "@rushstack/eslint-patch": "^1.1.0",
-    "@vitejs/plugin-vue": "^3.0.1",
+    "@vitejs/plugin-vue": "^3.0.3",
     "@vue/eslint-config-prettier": "^7.0.0",
     "eslint": "^8.5.0",
     "eslint-plugin-vue": "^9.0.0",
     "prettier": "^2.5.1",
-    "vite": "^3.0.1"
+    "vite": "^3.0.8",
+    "vite-plugin-vuetify": "^1.0.0-alpha.12",
+    "vue-cli-plugin-vuetify": "~2.5.8"
   }
 }
