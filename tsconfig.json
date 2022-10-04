@@ -5,6 +5,7 @@
     "src/**/*.vue"
   ],
   "compilerOptions": {
+    "outDir": "dist",
     "baseUrl": ".",
     "paths": {
       "@/*": [
