@@ -5,23 +5,12 @@
         <tr>
           <th>No</th>
           <th>name</th>
-          <th>description</th>
-          <th>createdAt</th>
-          <th>star</th>
-          <th>url</th>
         </tr>
       </thead>
       <tbody>
-        <tr
-          v-for="(v, index) in result.organization.repositories.nodes"
-          :key="v.url"
-        >
+        <tr v-for="(v, index) in result.allFilms.films" :key="v.title">
           <td>{{ index + 1 }}</td>
-          <td>{{ v.name }}</td>
-          <td>{{ v.description }}</td>
-          <td>{{ new Date(v.createdAt).toLocaleDateString() }}</td>
-          <td>{{ v.stargazers.totalCount }}</td>
-          <td>{{ v.url }}</td>
+          <td>{{ v.title }}</td>
         </tr>
       </tbody>
     </table>
@@ -30,7 +19,7 @@
 
 <script setup>
 import { useQuery } from '@vue/apollo-composable'
-import get from '@/apis/get'
+import { GET_START_WARS } from '@/apis/get'
 
-const { result } = useQuery(get)
+const { result } = useQuery(GET_START_WARS)
 </script>

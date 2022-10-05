@@ -1,17 +1,19 @@
 import gql from 'graphql-tag'
 
-export default gql`
-  query {
-    organization(login: "vuejs") {
-      repositories(first: 50, orderBy: { field: STARGAZERS, direction: DESC }) {
-        nodes {
-          name
-          description
-          createdAt
-          updatedAt
-          url
-          stargazers {
-            totalCount
+export const GET_START_WARS = gql`
+  query Query {
+    allFilms {
+      films {
+        title
+        director
+        releaseDate
+        speciesConnection {
+          species {
+            name
+            classification
+            homeworld {
+              name
+            }
           }
         }
       }

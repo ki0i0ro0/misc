@@ -6,14 +6,7 @@ import {
 
 // HTTP connection to the API
 const httpLink = createHttpLink({
-  uri: 'https://api.github.com/graphql',
-  fetch: (uri, options) => {
-    const headers = {
-      Authorization: 'Bearer ' + import.meta.env.VITE_APP_PASS,
-    }
-    options.headers = headers
-    return fetch(uri, options)
-  },
+  uri: 'https://swapi-graphql.netlify.app/.netlify/functions/index',
 })
 
 // Cache implementation
