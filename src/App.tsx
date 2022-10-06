@@ -21,7 +21,7 @@ import { Wrapper, Status } from '@googlemaps/react-wrapper'
 import { createCustomEqual } from 'fast-equals'
 import { isLatLngLiteral } from '@googlemaps/typescript-guards'
 
-const render = (status: Status) => {
+const render = (status: Status): JSX.Element => {
   return <h1>{status}</h1>
 }
 
@@ -31,18 +31,18 @@ const App: React.VFC = () => {
   const [zoom, setZoom] = React.useState(3) // initial zoom
   const [center, setCenter] = React.useState<google.maps.LatLngLiteral>({
     lat: 0,
-    lng: 0,
+    lng: 0
   })
 
-  const onClick = (e: google.maps.MapMouseEvent) => {
+  const onClick = (e: google.maps.MapMouseEvent): void => {
     // avoid directly mutating state
-    setClicks([...clicks, e.latLng!])
+    setClicks([...clicks, e.latLng])
   }
 
-  const onIdle = (m: google.maps.Map) => {
+  const onIdle = (m: google.maps.Map): void => {
     console.log('onIdle')
-    setZoom(m.getZoom()!)
-    setCenter(m.getCenter()!.toJSON())
+    setZoom(m.getZoom())
+    setCenter(m.getCenter().toJSON())
   }
   // [END maps_react_map_component_app_state]
 
@@ -52,7 +52,7 @@ const App: React.VFC = () => {
         padding: '1rem',
         flexBasis: '250px',
         height: '100%',
-        overflow: 'auto',
+        overflow: 'auto'
       }}
     >
       <label htmlFor="zoom">Zoom</label>
@@ -115,6 +115,7 @@ interface MapProps extends google.maps.MapOptions {
   style: { [key: string]: string }
   onClick?: (e: google.maps.MapMouseEvent) => void
   onIdle?: (map: google.maps.Map) => void
+  children: any
 }
 
 const Map: React.FC<MapProps> = ({ onClick, onIdle, children, style, ...options }) => {
@@ -123,7 +124,7 @@ const Map: React.FC<MapProps> = ({ onClick, onIdle, children, style, ...options 
   const [map, setMap] = React.useState<google.maps.Map>()
 
   React.useEffect(() => {
-    if (ref.current && !map) {
+    if (ref.current != null && map == null) {
       setMap(new window.google.maps.Map(ref.current, {}))
     }
   }, [ref, map])
@@ -133,7 +134,7 @@ const Map: React.FC<MapProps> = ({ onClick, onIdle, children, style, ...options 
   // because React does not do deep comparisons, a custom hook is used
   // see discussion in https://github.com/googlemaps/js-samples/issues/946
   useDeepCompareEffectForMaps(() => {
-    if (map) {
+    if (map != null) {
       map.setOptions(options)
     }
   }, [map, options])
@@ -141,14 +142,14 @@ const Map: React.FC<MapProps> = ({ onClick, onIdle, children, style, ...options 
 
   // [START maps_react_map_component_event_hooks]
   React.useEffect(() => {
-    if (map) {
+    if (map != null) {
       ;['click', 'idle'].forEach((eventName) => google.maps.event.clearListeners(map, eventName))
 
-      if (onClick) {
+      if (onClick != null) {
         map.addListener('click', onClick)
       }
 
-      if (onIdle) {
+      if (onIdle != null) {
         map.addListener('idle', () => onIdle(map))
       }
     }
@@ -162,6 +163,7 @@ const Map: React.FC<MapProps> = ({ onClick, onIdle, children, style, ...options 
       {React.Children.map(children, (child) => {
         if (React.isValidElement(child)) {
           // set the map prop on the child component
+          // @ts-expect-error
           return React.cloneElement(child, { map })
         }
       })}
@@ -175,20 +177,20 @@ const Marker: React.FC<google.maps.MarkerOptions> = (options) => {
   const [marker, setMarker] = React.useState<google.maps.Marker>()
 
   React.useEffect(() => {
-    if (!marker) {
+    if (marker == null) {
       setMarker(new google.maps.Marker())
     }
 
     // remove marker from map on unmount
     return () => {
-      if (marker) {
+      if (marker != null) {
         marker.setMap(null)
       }
     }
   }, [marker])
 
   React.useEffect(() => {
-    if (marker) {
+    if (marker != null) {
       marker.setOptions(options)
     }
   }, [marker, options])
@@ -213,7 +215,7 @@ const deepCompareEqualsForMaps = createCustomEqual((deepEqual) => (a: any, b: an
   return deepEqual(a, b)
 })
 
-function useDeepCompareMemoize(value: any) {
+const useDeepCompareMemoize = (value: any): void => {
   const ref = React.useRef()
 
   if (!deepCompareEqualsForMaps(value, ref.current)) {
@@ -223,7 +225,7 @@ function useDeepCompareMemoize(value: any) {
   return ref.current
 }
 
-function useDeepCompareEffectForMaps(callback: React.EffectCallback, dependencies: any[]) {
+const useDeepCompareEffectForMaps = (callback: React.EffectCallback, dependencies: any[]): void => {
   React.useEffect(callback, dependencies.map(useDeepCompareMemoize))
 }
 
@@ -232,6 +234,7 @@ window.addEventListener('DOMContentLoaded', () => {
 })
 
 // [END maps_react_map]
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 let PRESERVE_COMMENT_ABOVE // force tsc to maintain the comment above eslint-disable-line
 
 export default App
