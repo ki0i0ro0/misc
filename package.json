@@ -6,7 +6,8 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "lint": "eslint src --fix"
+    "lint": "eslint src --fix",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@googlemaps/react-wrapper": "^1.1.35",
@@ -28,7 +29,14 @@
     "eslint-plugin-n": "^15.3.0",
     "eslint-plugin-promise": "^6.0.1",
     "eslint-plugin-react": "^7.31.8",
+    "husky": "^8.0.1",
+    "lint-staged": "^13.0.3",
     "typescript": "^4.8.4",
     "vite": "^2.9.9"
+  },
+  "lint-staged": {
+    "src/**/*.{js,ts,jsx,tsx}": [
+      "npm run lint"
+    ]
   }
 }
