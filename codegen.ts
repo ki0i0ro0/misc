@@ -1,10 +1,9 @@
-
-import type { CodegenConfig } from '@graphql-codegen/cli';
+import type { CodegenConfig } from "@graphql-codegen/cli";
 
 const config: CodegenConfig = {
   overwrite: true,
   schema: "schema.graphql",
-  documents: "src/**/*.vue",
+  // documents: "src/**/*.vue",
   generates: {
     "src/gql": {
       preset: "client",
