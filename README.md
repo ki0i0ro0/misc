@@ -1,5 +1,7 @@
 # test-mermaid
 
+[VScode で OpenAPI を書くために便利なプラグイン一覧](https://zenn.dev/s_t_pool/articles/954dfe51b950c18d08e9)
+
 ## 使うメリット
 
 どんな人が、どんな時に Mermaid を使うといいのか、Qiita で Mermaid を使うメリットをあげてみます。
