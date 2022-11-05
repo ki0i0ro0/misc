@@ -8,7 +8,11 @@
     "build": "tsc",
     "watch": "tsc -w",
     "test": "jest",
-    "cdk": "cdk"
+    "cdk": "cdk",
+    "generate": "cdk synth --no-staging > template.yaml",
+    "sam-test": "sam local start-api -t template.yaml --docker-network sam-cli",
+    "docker:start": "sudo service docker start",
+    "dynamodb-admin": "dynamodb-admin"
   },
   "dependencies": {
     "aws-cdk-lib": "2.50.0",
@@ -21,6 +25,7 @@
     "@types/prettier": "2.6.0",
     "aws-cdk": "2.50.0",
     "dynamodb-admin": "^4.5.0",
+    "eslint": "^8.26.0",
     "jest": "^27.5.1",
     "ts-jest": "^27.1.4",
     "ts-node": "^10.9.1",
