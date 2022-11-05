@@ -8,11 +8,11 @@
     "build": "tsc",
     "watch": "tsc -w",
     "test": "jest",
+    "test:sam": "sam local start-api -t template.yaml --docker-network sam-cli",
+    "test:docker-start": "sudo service docker start",
+    "test:generate": "cdk synth --no-staging > template.yaml",
     "cdk": "cdk",
-    "generate": "cdk synth --no-staging > template.yaml",
-    "sam-test": "sam local start-api -t template.yaml --docker-network sam-cli",
-    "docker:start": "sudo service docker start",
-    "dynamodb-admin": "dynamodb-admin"
+    "debug:dynamo-gui": "dynamodb-admin"
   },
   "dependencies": {
     "aws-cdk-lib": "2.50.0",
