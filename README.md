@@ -15,29 +15,35 @@ The `cdk.json` file tells the CDK Toolkit how to execute your app.
 
 ## 参考サイト
 
-https://dev.classmethod.jp/articles/cdk-local-develop/
+[AWS CDK で定義したリソースをローカル環境で実行してみた](https://dev.classmethod.jp/articles/cdk-local-develop/)
 
 ⇒ このままでは使えないので書き換えは必要
 
 SAM インストール
 
-https://docs.aws.amazon.com/ja_jp/cli/latest/userguide/getting-started-install.html
+[Installing or updating the latest version of the AWS CLI](https://docs.aws.amazon.com/ja_jp/cli/latest/userguide/getting-started-install.html)
 
 ### Docker 起動
 
-`service docker start`
+```sh
+service docker start
+```
 
+### Docker ネットワーク追加
+
+```sh
 docker network create sam-cli
+```
 
+### dynamoDB へテストデータ追加
+
+```sh
 export AWS_SECRET_ACCESS_KEY=local
 export AWS_ACCESS_KEY_ID=local
 export AWS_DEFAULT_REGION=local
 
-https://qiita.com/gzock/items/e0225fd71917c234acce
-
-aws dynamodb create-table --endpoint-url http://172.25.25.174:8000 --cli-input-json file://dynamodb/samples.json
-
 aws dynamodb create-table --endpoint-url http://localhost:8000 --cli-input-json file://dynamodb/samples.json
 aws dynamodb batch-write-item --endpoint-url http://localhost:8000 --request-items file://dynamodb/samples_data.json
+```
 
-https://qiita.com/gzock/items/e0225fd71917c234acce
+[DynamoDB Local の導入](https://qiita.com/gzock/items/e0225fd71917c234acce)
