@@ -28,3 +28,9 @@ Currently there's a "papercut" for Deno users:
 
 - peer dependencies need to be referenced in `vite.config.js` - in this example
   it is `react` and `react-dom` packages that need to be referenced
+
+## Links
+
+- [Deno インストール](https://qiita.com/m_mitsuhide/items/6db4f60f08a0747ef151)
+
+- [Deno のフロントエンド開発の動向【2022 年秋】](https://zenn.dev/uki00a/articles/frontend-development-in-deno-2022-autumn)
