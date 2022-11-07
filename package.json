@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "codegen": "grpc_tools_node_protoc -I ./proto --plugin=protoc-gen-ts=./node_modules/.bin/protoc-gen-ts --js_out=import_style=commonjs,binary:./generated --grpc_out=grpc_js:./generated --ts_out=service=grpc-node,mode=grpc-js:./generated ./proto/*.proto"
+    "codegen:node": "grpc_tools_node_protoc -I ./proto --plugin=protoc-gen-ts=./node_modules/.bin/protoc-gen-ts --js_out=import_style=commonjs,binary:./generated --grpc_out=grpc_js:./generated --ts_out=service=grpc-node,mode=grpc-js:./generated ./proto/*.proto",
+    "codegen:web": "grpc_tools_node_protoc -I ./proto --plugin=protoc-gen-ts=./node_modules/.bin/protoc-gen-ts --ts_out=service=grpc-web:./generated ./proto/*.proto"
   },
   "keywords": [],
   "author": "",
