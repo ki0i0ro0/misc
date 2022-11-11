@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@promitheus/ra-data-postgrest": "^1.2.2",
     "next": "13.0.3",
     "ra-data-json-server": "^4.5.0",
     "react": "18.2.0",
