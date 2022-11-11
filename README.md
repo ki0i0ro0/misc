@@ -33,4 +33,6 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
 
-https://marmelab.com/react-admin/NextJs.html
+[Next.js Integration](https://marmelab.com/react-admin/NextJs.html)
+
+[サクッと MUI ベースの管理画面が作れる React Admin のチュートリアルを試してみた](https://dev.classmethod.jp/articles/react-admin-tutorial/)
