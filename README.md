@@ -36,3 +36,9 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 [Next.js Integration](https://marmelab.com/react-admin/NextJs.html)
 
 [サクッと MUI ベースの管理画面が作れる React Admin のチュートリアルを試してみた](https://dev.classmethod.jp/articles/react-admin-tutorial/)
+
+https://next-auth.js.org/providers/github
+
+https://yurakawa.hatenablog.jp/entry/2018/06/04/002033
+
+https://reffect.co.jp/react/next-auth
