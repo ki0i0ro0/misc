@@ -7,10 +7,15 @@ const errorJob = () => {
 try {
   errorJob()
 } catch (e) {
+  const errorResponse = {
+    headers: {},
+    statusCode: 0,
+    errors: "",
+  }
   switch (e.message) {
     case AUTH_FAILED:
-      console.log(e)
-      console.log("a")
+      errorResponse.statusCode = 300
+      console.log(errorResponse)
       break
     case "0002":
       console.log("b")
