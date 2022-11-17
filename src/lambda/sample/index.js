@@ -1,16 +1,19 @@
 const AWS = require("aws-sdk");
 
+let dynamodbOption = {};
+
+if (process.env.ENV === "local") {
+  dynamodbOption = {
+    endpoint: "http://dynamodb:8000",
+    region: "local",
+    accessKeyId: "local",
+    secretAccessKey: "local",
+  };
+}
+
+const docClient = new AWS.DynamoDB.DocumentClient(dynamodbOption);
+
 exports.handler = async (event) => {
-  let dynamodbOption = {};
-  if (process.env.ENV === "local") {
-    dynamodbOption = {
-      endpoint: "http://dynamodb:8000",
-      region: "local",
-      accessKeyId: "local",
-      secretAccessKey: "local",
-    };
-  }
-  const docClient = new AWS.DynamoDB.DocumentClient(dynamodbOption);
   const params = {
     TableName: "samples",
   };

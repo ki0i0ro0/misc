@@ -21,22 +21,35 @@ export class CdkStack extends cdk.Stack {
       runtime: lambda.Runtime.NODEJS_16_X,
       handler: "index.handler",
       code: lambda.Code.fromAsset("src/lambda/sample"),
-      timeout: cdk.Duration.seconds(60),
       environment: {
         ENV: env,
       },
     });
     sampleTable.grantReadWriteData(sampleLambda);
 
+    // Lambda関数
+    const setLambda = new lambda.Function(this, "setLambda", {
+      runtime: lambda.Runtime.NODEJS_16_X,
+      handler: "index.handler",
+      code: lambda.Code.fromAsset("src/lambda/set"),
+      environment: {
+        ENV: env,
+      },
+    });
+    sampleTable.grantReadWriteData(setLambda);
+
     // API Gateway
     const sampleApi = new apigateway.RestApi(this, "sampleApi", {
       restApiName: "sampleApi",
     });
 
-    const samplesResource = sampleApi.root.addResource("samples");
     const getSamplesIntegration = new apigateway.LambdaIntegration(
       sampleLambda
     );
+    const postSetIntegration = new apigateway.LambdaIntegration(setLambda);
+
+    const samplesResource = sampleApi.root.addResource("samples");
     samplesResource.addMethod("GET", getSamplesIntegration);
+    samplesResource.addMethod("POST", postSetIntegration);
   }
 }
