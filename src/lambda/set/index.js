@@ -1,12 +1,15 @@
-const AWS = require("aws-sdk");
+const { DynamoDBClient, PutItemCommand } = require("@aws-sdk/client-dynamodb")
 
 exports.handler = async (event) => {
-  const params = {
+  const params = new PutItemCommand({
     TableName: 'samples',
     Item: {
-      'Id': "2"
-    }
-  }
+      Item: {
+        'Id': {S:"2"}
+      }
+    },
+  })
+
   let dynamodbOption = {};
 
   if (process.env.ENV === "local") {
@@ -18,9 +21,9 @@ exports.handler = async (event) => {
     };
   }
 
-  const docClient = new AWS.DynamoDB.DocumentClient(dynamodbOption);
+  const docClient = new DynamoDBClient(dynamodbOption);
 
-  await docClient.put(params).promise();
+  await docClient.send(params);
 
   const responseBody = {
     samples: "",
