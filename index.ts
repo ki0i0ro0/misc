@@ -1,16 +1,16 @@
-const WebSocket = require("ws")
+import WebSocket from "ws"
 
 const wss = new WebSocket.Server({ port: 3000 }, () => {
   console.log("server is now listening localhost:3000")
 })
 
-let connections = []
+let connections: any[] = []
 
 wss.on("connection", (ws) => {
   connections.push(ws)
   console.log(`new connection established. connections: ${connections.length}`)
   ws.on("close", () => {
-    console.log(`connection closeed: ${connections.length}`)
+    console.log(`connection closed: ${connections.length}`)
     connections = connections.filter((conn, i) => conn !== ws)
   })
   ws.on("message", (message) => {
@@ -18,8 +18,8 @@ wss.on("connection", (ws) => {
   })
 })
 
-const broadcast = (message) => {
-  connections.forEach((con, i) => {
-    con.send(message)
+const broadcast = (message: any) => {
+  connections.forEach((conn, i) => {
+    conn.send(message)
   })
 }
