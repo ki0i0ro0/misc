@@ -1,4 +1,3 @@
-import { VFC } from "react"
 import styled from "@emotion/styled"
 import { fontSize } from "../../constants"
 
@@ -7,7 +6,7 @@ export type TextProps = {
   className?: string
 }
 
-export const Text: VFC<TextProps> = ({ text, className = "" }) => {
+export const Text = ({ text, className = "" }: TextProps) => {
   return <Wrapper className={className}>{text}</Wrapper>
 }
 
