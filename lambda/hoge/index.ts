@@ -2,10 +2,23 @@ import { APIGatewayProxyEvent, APIGatewayEventRequestContext } from 'aws-lambda'
 
 import * as mysql from 'mysql2/promise'
 
-export const handler = async (
-  event: APIGatewayProxyEvent,
-  context: APIGatewayEventRequestContext,
-) => {
+/**
+ * Entry Point
+ * @param event
+ * @param context
+ * @returns
+ */
+export const handler = async (event: APIGatewayProxyEvent, context: APIGatewayEventRequestContext) => {
+  return main(event, context)
+}
+
+/**
+ * main
+ * @param event
+ * @param context
+ * @returns
+ */
+const main = async (event: APIGatewayProxyEvent, context: APIGatewayEventRequestContext) => {
   const connection = await mysql.createConnection({
     host: process.env.DB_HOST,
     port: parseInt(process.env.DB_PORT || '', 10),
