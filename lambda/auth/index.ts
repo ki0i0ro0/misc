@@ -1,7 +1,7 @@
-import { AppSyncAuthorizerResult, AppSyncAuthorizerEvent } from 'aws-lambda'
+import { AppSyncAuthorizerResult, AppSyncAuthorizerEvent } from "aws-lambda";
 
 /** OKにするAuthorizationヘッダの値 */
-const CORRECT_TOKEN: string = 'hogehoge'
+const CORRECT_TOKEN: string = "hogehoge";
 
 /**
  * エントリーポイント
@@ -9,10 +9,10 @@ const CORRECT_TOKEN: string = 'hogehoge'
  * @returns レスポンス
  */
 export async function handler(event: AppSyncAuthorizerEvent): Promise<AppSyncAuthorizerResult> {
-  console.info('Received event {}', JSON.stringify(event))
-  const response = await main(event)
-  console.info('Response JSON {}', JSON.stringify(response))
-  return response
+  console.info("Received event {}", JSON.stringify(event));
+  const response = await main(event);
+  console.info("Response JSON {}", JSON.stringify(response));
+  return response;
 }
 
 /**
@@ -23,8 +23,8 @@ export async function handler(event: AppSyncAuthorizerEvent): Promise<AppSyncAut
 const main = (event: AppSyncAuthorizerEvent) => {
   const response = {
     isAuthorized: event.authorizationToken === CORRECT_TOKEN,
-  }
-  return response
-}
+  };
+  return response;
+};
 
 // https://makky12.hatenablog.com/entry/2021/09/21/120500
