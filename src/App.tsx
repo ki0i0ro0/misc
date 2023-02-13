@@ -1,34 +1,53 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import './App.css'
+/**
+ * サンプルコード Reducer
+ */
+import { useReducer, useState } from "react"
 
-function App() {
-  const [count, setCount] = useState(0)
+/** 状態 */
+type State = {
+  id: number
+  text: string
+}
 
+/** 動作 */
+type Action = {
+  type: "ADD"
+  text: string
+}
+
+/** 初期化 */
+const initialState: State[] = [
+  {
+    id: 0,
+    text: "initial todo",
+  },
+]
+
+// stateとactionを受け取り、actionのtypeによってstateの更新方法を変える
+const reducer = (state: State[], action: Action): State[] => {
+  switch (action.type) {
+    case "ADD":
+      return [...state, { id: state.slice(-1)[0].id + 1, text: action.text }]
+  }
+}
+
+const TodoList = () => {
+  const [text, setText] = useState("")
+  const [todoList, dispatch] = useReducer(reducer, initialState)
   return (
-    <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+    <div className="todos">
+      <label>
+        todo :
+        <input type="text" value={text} onChange={(e) => setText(e.target.value)} />
+      </label>
+      <button onClick={() => dispatch({ type: "ADD", text: text })}>Add todo</button>
+      <ul>
+        {todoList.map((todo) => (
+          <li key={todo.id}>{todo.text}</li>
+        ))}
+      </ul>
     </div>
   )
 }
 
-export default App
+export default TodoList
