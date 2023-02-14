@@ -7,9 +7,10 @@ const index = ({ item }: any) => {
 
 export default index;
 
-export const getServerSideProps = async () => {
+export const getServerSideProps = async (context: any) => {
   //以下のconsole.logはブラウザで実行されない
   console.log("hello next.js");
+  console.log(context.query);
   return {
     props: {
       item: "hello world",
