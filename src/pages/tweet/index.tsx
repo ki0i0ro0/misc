@@ -1,19 +1,25 @@
 import React from "react";
 
-const index = ({ item }: any) => {
-  console.log(item);
-  return <div>{item}</div>;
+const index = ({ data }: any) => {
+  return (
+    <div>
+      {data.map((person: any) => {
+        return <div key={person.name}>{person.name}</div>;
+      })}
+    </div>
+  );
 };
 
 export default index;
 
-export const getServerSideProps = async (context: any) => {
-  //以下のconsole.logはブラウザで実行されない
-  console.log("hello next.js");
-  console.log(context.query);
+export const getServerSideProps = async () => {
+  const res = await fetch("https://swapi.py4e.com/api/people/");
+  console.warn(res);
+  const data = await res.json();
+  console.log(data);
   return {
     props: {
-      item: "hello world",
+      data: data.results,
     },
   };
 };
