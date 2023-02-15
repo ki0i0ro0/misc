@@ -1,6 +1,7 @@
 import React from "react";
 
-const index = ({ data }: any) => {
+const index = (props: any) => {
+  const { data = [] } = props;
   return (
     <div>
       {data.map((person: any) => {
@@ -12,14 +13,14 @@ const index = ({ data }: any) => {
 
 export default index;
 
-export const getServerSideProps = async () => {
-  const res = await fetch("https://swapi.py4e.com/api/people/");
-  console.warn(res);
-  const data = await res.json();
-  console.log(data);
-  return {
-    props: {
-      data: data.results,
-    },
-  };
-};
+// export const getServerSideProps = async () => {
+//   const res = await fetch("https://swapi.py4e.com/api/people/");
+//   console.warn(res);
+//   const data = await res.json();
+//   console.log(data);
+//   return {
+//     props: {
+//       data: data.results,
+//     },
+//   };
+// };
