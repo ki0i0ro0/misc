@@ -2,7 +2,7 @@ import Button from "./Button";
 
 // export defaultでmetadataを設定後その下にストーリーを記述
 export default {
-  title: "Button",
+  title: "Common/Button",
   component: Button,
 };
 
