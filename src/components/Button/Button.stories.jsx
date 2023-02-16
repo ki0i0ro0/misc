@@ -6,5 +6,5 @@ export default {
   component: Button,
 };
 
-// HelloButtonのストーリー
 export const HelloButton = () => <Button>Hello World!</Button>;
+export const ClickButton = () => <Button>Click!</Button>;
