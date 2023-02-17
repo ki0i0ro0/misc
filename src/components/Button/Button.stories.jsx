@@ -1,8 +1,18 @@
 import Button from "../Button/Button";
 // export defaultでmetadataを設定後その下にストーリーを記述
 export default {
-  title: "Common/Button",
+  title: "Common/Test",
   component: Button,
+  argTypes: {
+    color: {
+      options: ["primary", "default", "danger"],
+      control: { type: "radio" },
+    },
+    size: {
+      options: ["sm", "base", "lg"],
+      control: { type: "select" },
+    },
+  },
 };
 const Template = (args) => <Button {...args} />;
 
