@@ -19,3 +19,18 @@ button {
 .danger {
   background-color: #dc3545;
 }
+
+.base {
+  font-size: 14px;
+  padding: 10px;
+}
+
+.sm {
+  font-size: 12px;
+  padding: 8px;
+}
+
+.lg {
+  font-size: 18px;
+  padding: 14px;
+}
