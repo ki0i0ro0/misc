@@ -5,4 +5,17 @@ button {
   border-radius: 1em;
   cursor: pointer;
   display: inline-block;
+  color: white;
+}
+
+.default {
+  background-color: #6c757d;
+}
+
+.primary {
+  background-color: #007bff;
+}
+
+.danger {
+  background-color: #dc3545;
 }
