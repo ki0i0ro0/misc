@@ -12,6 +12,12 @@ export default {
       options: ["sm", "base", "lg"],
       control: { type: "select" },
     },
+    backgroundColor: {
+      control: { type: "color" },
+    },
+    onClick: {
+      action: "clicked",
+    },
   },
 };
 const Template = (args) => <Button {...args} />;
