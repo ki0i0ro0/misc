@@ -3,9 +3,31 @@ import Image from "next/image";
 import { Inter } from "next/font/google";
 import styles from "@/styles/Home.module.css";
 
+import { Configuration, OpenAIApi } from "openai";
+import { useEffect, useRef, useState } from "react";
+
+const configuration = new Configuration({
+  apiKey: process.env.NEXT_PUBLIC_OPENAI_API_KEY,
+});
+const openai = new OpenAIApi(configuration);
+
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
+  const [message, setMessage] = useState("");
+  const inputElement = useRef<HTMLInputElement>(null);
+
+  const sendMessage = async () => {
+    if (!inputElement.current) return;
+    console.log(inputElement.current.value);
+    const completion = await openai.createChatCompletion({
+      model: "gpt-3.5-turbo",
+      messages: [{ role: "user", content: inputElement.current.value }],
+    });
+    console.log(completion.data.choices[0].message);
+    setMessage(message + completion.data.choices[0].message?.content || "");
+  };
+
   return (
     <>
       <Head>
@@ -21,7 +43,7 @@ export default function Home() {
           <div className={styles.card}>
             <h3 className={inter.className}>設定値１</h3>
             <p>
-              <input type={"text"} />
+              <input type={"text"} ref={inputElement} />
             </p>
           </div>
           <div className={styles.card}>
@@ -30,7 +52,9 @@ export default function Home() {
               <input type={"text"} />
             </p>
           </div>
+          <button onClick={sendMessage}>確定</button>
         </div>
+        <div className={styles.grid}>{message}</div>
       </main>
     </>
   );
