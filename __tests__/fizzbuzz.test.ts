@@ -16,6 +16,12 @@ describe("RomanToDecimal", () => {
   it("IVは4に置き換え", () => {
     expect(new RomanToDECIMAL().print("IV")).toEqual(4);
   });
+  it("IIVは3に置き換え", () => {
+    expect(new RomanToDECIMAL().print("IIV")).toEqual(3);
+  });
+  it("IIVは2に置き換え", () => {
+    expect(new RomanToDECIMAL().print("IIIV")).toEqual(2);
+  });
   it("Xは10に置き換え", () => {
     expect(new RomanToDECIMAL().print("X")).toEqual(10);
   });

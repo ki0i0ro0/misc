@@ -31,8 +31,8 @@ export class RomanToDECIMAL {
           break;
       }
       if (preNum < currentNum) {
-        const multipleNum = this.checkBeforeMinus(array, index) + 2;
-        retNum = retNum + currentNum - preNum * multipleNum;
+        const multipleNum = this.checkBeforeMinus(array, index - 1);
+        retNum = retNum + currentNum - preNum * multipleNum * 2;
       } else {
         retNum += currentNum;
       }
@@ -42,13 +42,13 @@ export class RomanToDECIMAL {
     return retNum;
   }
 
-  private checkBeforeMinus(array: string[], index: number): number {
-    const checkChar = array[index - 1];
-    if (index - 2 > -1) {
-      if (array[index - 2] === checkChar) {
-        return 1 + this.checkBeforeMinus(array, index - 1);
+  private checkBeforeMinus(array: string[], preIndex: number): number {
+    const checkChar = array[preIndex];
+    if (preIndex - 1 > -1) {
+      if (array[preIndex - 1] === checkChar) {
+        return 1 + this.checkBeforeMinus(array, preIndex - 1);
       }
     }
-    return 0;
+    return 1;
   }
 }
