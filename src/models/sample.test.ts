@@ -1,7 +1,10 @@
-import {  } from "";
+import { Bowling } from "./bowling";
 
 describe("", () => {
-  it("Iは1に置き換え", () => {
-    expect(new ().print("")).toEqual();
+  it("通常", () => {
+    expect(new Bowling().calc("9-9-9-9-9-9-9-9-9-9-")).toEqual(90);
+  });
+  it("通常2", () => {
+    expect(new Bowling().calc("9-9-9-9-9-9-9-9-9-8-")).toEqual(89);
   });
 });
