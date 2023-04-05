@@ -1,11 +1,19 @@
 import React from "react";
-import * as ReactDOM from "react-dom/client";
-import reactToWebComponent from "react-to-webcomponent";
-
-const Greeting = ({ name }: { name: string }) => {
-  return <h1>Hello, {name}</h1>;
+import { render } from "react-dom";
+const HelloWorld = ({ name }: { name: string }) => {
+  return <h1>Hello World {name}</h1>;
 };
 
-const WebGreeting = reactToWebComponent(Greeting, React, ReactDOM);
+class HelloWorldElement extends HTMLElement {
+  constructor() {
+    super();
+    this.attachShadow({ mode: "open" });
+  }
 
-customElements.define("web-greeting", WebGreeting);
+  connectedCallback() {
+    const name = this.getAttribute("name") || "";
+    render(<HelloWorld name={name} />, this.shadowRoot);
+  }
+}
+
+customElements.define("web-greeting", HelloWorldElement);
