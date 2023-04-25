@@ -2,7 +2,6 @@
   "name": "vscode-compose-template-ui",
   "dockerComposeFile": ["../compose.yaml"],
   "service": "ui",
-  "shutdownAction": "none",
   "workspaceFolder": "/workspace",
   "customizations": {
     "vscode": {
