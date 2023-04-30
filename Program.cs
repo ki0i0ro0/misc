@@ -1,10 +1,13 @@
 using BlazorAppTest.Data;
+using BlazorAppTest.Shared;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
-
+using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddDbContextFactory<DataContext>(option =>
+    option.UseSqlServer("Data Source=localhost,1433;Initial Catalog=guest;User ID=SA;Password=<YourStrong@Passw0rd>"));
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 builder.Services.AddSingleton<WeatherForecastService>();
