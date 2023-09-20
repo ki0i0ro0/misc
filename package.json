@@ -1,0 +1,14 @@
+{
+  "name": "test-long-polling",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "dev": "npx concurrently \"npm start\" \"npm run start:frontend\"",
+    "start": "node server.js",
+    "start:frontend": "npx http-server ./frontend -p 8082 -P http://localhost:8080/"
+  },
+  "dependencies": {
+    "node-static": "^0.7.11"
+  }
+}
