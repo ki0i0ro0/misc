@@ -22,4 +22,4 @@ module.exports = {
     'declaration-block-no-shorthand-property-overrides': true,
     'selector-pseudo-element-colon-notation': 'double',
   },
-}
+};
