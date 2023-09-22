@@ -10,11 +10,15 @@ type Props = MarkdownLayoutProps<{
 
 // `frontmatter`や`url`などのMarkdownのレイアウトプロパティに
 // 型安全にアクセスできます
-const { frontmatter,url } = Astro.props;
+const { frontmatter, url } = Astro.props;
 ---
+
 <html>
   <head>
-    <link rel="canonical" href={new URL(url, Astro.site ?? "http://localhost").pathname}>
+    <link
+      rel="canonical"
+      href={new URL(url, Astro.site ?? 'http://localhost').pathname}
+    />
     <title>{frontmatter.title}</title>
   </head>
   <body>
