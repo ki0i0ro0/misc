@@ -1,0 +1,18 @@
+{
+  "name": "test-app",
+  "version": "1.0.0",
+  "description": "test-app",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "push:image": "gcloud builds submit --project dev-kensaku-matsumoto --tag gcr.io/dev-kensaku-matsumoto/helloworld",
+    "deploy": "gcloud beta run deploy --image gcr.io/dev-kensaku-matsumoto/helloworld --platform managed",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
