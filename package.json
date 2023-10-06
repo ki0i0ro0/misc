@@ -1,7 +1,7 @@
 {
-  "name": "test-app",
+  "name": "test-cloud-run",
   "version": "1.0.0",
-  "description": "test-app",
+  "description": "test-cloud-run",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
