@@ -40,3 +40,13 @@ yarn-error.log*
 
 # typescript
 *.tsbuildinfo
+
+# GoogleCloudの認証キー
+key.json
+
+# Local .terraform directories
+**/.terraform/*
+
+# .tfstate files
+*.tfstate
+*.tfstate.*
