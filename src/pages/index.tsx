@@ -6,6 +6,7 @@ import { api } from "@/utils/api";
 
 export default function Home() {
   const hello = api.example.hello.useQuery({ text: "from tRPC" });
+  const { data } = api.example.getAll.useQuery();
 
   return (
     <>
@@ -46,7 +47,14 @@ export default function Home() {
           <div className="flex flex-col items-center gap-2">
             <p className="text-2xl text-white">
               {hello.data ? hello.data.greeting : "Loading tRPC query..."}
+              {data?.map((user) => (
+                <div key={user.id} className="flex gap-2">
+                  <div>{user.id}</div>
+                  <div>{user.name}</div>
+                </div>
+              ))}
             </p>
+
             <AuthShowcase />
           </div>
         </div>
@@ -60,7 +68,7 @@ function AuthShowcase() {
 
   const { data: secretMessage } = api.example.getSecretMessage.useQuery(
     undefined, // no input
-    { enabled: sessionData?.user !== undefined }
+    { enabled: sessionData?.user !== undefined },
   );
 
   return (

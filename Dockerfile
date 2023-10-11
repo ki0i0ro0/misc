@@ -4,9 +4,9 @@ WORKDIR /usr/src/app
 
 COPY package*.json ./
 
-RUN npm install --omit=dev
-
 COPY . ./
+
+RUN npm install --omit=dev
 
 RUN cp .env.example .env
 
