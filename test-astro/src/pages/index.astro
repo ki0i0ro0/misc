@@ -1,0 +1,54 @@
+---
+import Title from '../components/Title';
+import MySiteLayout from '../layouts/MySiteLayout.astro';
+---
+
+<MySiteLayout>
+  <Title>タイトル</Title>
+  <p>レイアウトに包まれたコンテンツ！</p>
+</MySiteLayout>
+
+<style>
+  main {
+    max-width: 60ch;
+    padding: 1.5rem;
+    margin: auto;
+  }
+  h1 {
+    margin: 0;
+    font-size: 3rem;
+    font-weight: 800;
+  }
+  .text-gradient {
+    background-image: var(--accent-gradient);
+    background-position: 0%;
+    -webkit-background-clip: text;
+    background-size: 400%;
+    -webkit-text-fill-color: transparent;
+  }
+  .instructions {
+    padding: 1rem;
+    margin: 1rem 0;
+    line-height: 1.6;
+    background-color: white;
+    border: 1px solid rgba(var(--accent), 25%);
+    border-radius: 0.4rem;
+  }
+  .instructions code {
+    padding: 0.3em 0.45em;
+    font-size: 0.875em;
+    font-weight: bold;
+    color: rgb(var(--accent));
+    background: rgba(var(--accent), 12%);
+    border-radius: 4px;
+  }
+  .instructions strong {
+    color: rgb(var(--accent));
+  }
+  .link-card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(24ch, 1fr));
+    gap: 1rem;
+    padding: 0;
+  }
+</style>

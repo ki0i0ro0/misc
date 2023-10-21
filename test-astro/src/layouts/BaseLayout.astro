@@ -1,0 +1,29 @@
+---
+import type { MarkdownLayoutProps } from 'astro';
+
+type Props = MarkdownLayoutProps<{
+  // フロントマターのpropsをここで定義します
+  title: string;
+  author: string;
+  date: string;
+}>;
+
+// `frontmatter`や`url`などのMarkdownのレイアウトプロパティに
+// 型安全にアクセスできます
+const { frontmatter, url } = Astro.props;
+---
+
+<html>
+  <head>
+    <link
+      rel="canonical"
+      href={new URL(url, Astro.site ?? 'http://localhost').pathname}
+    />
+    <title>{frontmatter.title}</title>
+  </head>
+  <body>
+    <h1>{frontmatter.title} {frontmatter.author}著</h1>
+    <slot />
+    <p>投稿日: {frontmatter.date}</p>
+  </body>
+</html>

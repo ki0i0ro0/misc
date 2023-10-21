@@ -1,0 +1,10 @@
+coverage/
+src/types/openapi/
+.eslintrc.js
+jest.config.js
+mockServiceWorker.js
+next.config.js
+stylelint.config.js
+orval.config.js
+scripts/securityHeaders.js
+storybook-static/
