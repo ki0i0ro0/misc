@@ -1,0 +1,8 @@
+version: '3.7'
+services:
+  protobuf:
+    build:
+      context: ./
+    image: protobuf-cli:3.11.4
+    volumes:
+      - ./workspace:/workspace
