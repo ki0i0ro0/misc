@@ -1,0 +1,13 @@
+{
+  "name": "test-node-gyp",
+  "version": "1.0.0",
+  "description": "ビルドファイルの生成",
+  "main": "hello.js",
+  "scripts": {
+    "install": "node-gyp rebuild"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "gypfile": true
+}
