@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+  </head>
+  <body>
+    <!-- 追加部分 -->
+    <% let content = ["あ","い","う","え","お"]; %> <% for(let i in content) { %>
+    <h2><%= content[i] %></h2>
+    <% } %>
+  </body>
+</html>
