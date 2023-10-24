@@ -1,0 +1,15 @@
+{
+  "name": "sample-app",
+  "private": true,
+  "workspaces": {
+    "packages": [
+      "core",
+      "mobile",
+      "web"
+    ],
+    "nohoist": []
+  },
+  "dependencies": {
+    "react-native": "^0.68.2"
+  }
+}
