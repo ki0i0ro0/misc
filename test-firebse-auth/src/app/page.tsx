@@ -4,8 +4,9 @@ import ServerComponent from "@/components/ServerComponent";
 const Home = async () => {
   return (
     <main>
+      <p>クライアント</p>
       <ClientComponent />
-      {/* @ts-ignore */}
+      <p>サーバー</p>
       <ServerComponent />
     </main>
   );

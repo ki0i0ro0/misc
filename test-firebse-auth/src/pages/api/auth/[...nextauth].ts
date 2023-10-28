@@ -3,12 +3,13 @@ import type { NextAuthOptions } from "next-auth";
 
 import CredentialsProvider from "next-auth/providers/credentials";
 
-import { auth } from "../../firebase/admin";
+import { auth } from "../../../app/firebase/admin";
 
 export const authOptions: NextAuthOptions = {
   providers: [
     CredentialsProvider({
       credentials: {},
+      // @ts-ignore
       authorize: async ({ idToken }: any, _req) => {
         if (idToken) {
           try {
