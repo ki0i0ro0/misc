@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebase/client";
 import { signIn as signInByNextAuth } from "next-auth/react";
@@ -8,6 +8,10 @@ import { signIn as signInByNextAuth } from "next-auth/react";
 const SingIn = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  // useEffect(() => {
+  //   signIn();
+  // }, []);
 
   const signIn = async () => {
     if (!email) return;
