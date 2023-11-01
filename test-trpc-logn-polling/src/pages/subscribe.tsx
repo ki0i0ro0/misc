@@ -6,15 +6,7 @@ import { api } from "~/utils/api";
 
 const Home: NextPage = () => {
   const hello = api.example.hello.useQuery({ text: "from tRPC" });
-  const aa = api.subscribe.onAdd.useQuery();
-  const event = api.subscribe.add.useMutation();
 
-  const onSend = () => {
-    event.mutate();
-    console.warn("send");
-  };
-
-  console.warn(aa);
   return (
     <>
       <Head>
@@ -22,7 +14,6 @@ const Home: NextPage = () => {
       </Head>
       <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#2e026d] to-[#15162c]">
         {hello.data ? hello.data.greeting : "Loading tRPC query..."}
-        <button onClick={onSend}>test</button>
         <AuthShowcase />
       </main>
     </>
