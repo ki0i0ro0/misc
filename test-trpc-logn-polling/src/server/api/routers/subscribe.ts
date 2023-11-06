@@ -1,5 +1,7 @@
 import { EventEmitter } from "events";
 import { createTRPCRouter, publicProcedure } from "~/server/api/trpc";
+import { z } from "zod";
+
 const ee = new EventEmitter();
 
 export const subscribeRouter = createTRPCRouter({
@@ -12,9 +14,11 @@ export const subscribeRouter = createTRPCRouter({
     });
     return await ret;
   }),
-  add: publicProcedure.mutation(() => {
-    const post = "test";
-    ee.emit("add", post);
-    return "post";
-  }),
+  add: publicProcedure
+    .input(z.object({ text: z.string() }))
+    .mutation(({ input }) => {
+      console.log(input.text);
+      ee.emit("add", input.text);
+      return "post";
+    }),
 });

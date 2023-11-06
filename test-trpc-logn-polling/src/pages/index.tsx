@@ -5,7 +5,7 @@ import { api } from "~/utils/api";
 import { useCallback, useEffect, useState } from "react";
 
 const Home: NextPage = () => {
-  const [data, setData] = useState("");
+  const [data, setData] = useState("0");
   const trpc = api.useContext();
   const event = api.subscribe.add.useMutation();
 
@@ -20,7 +20,9 @@ const Home: NextPage = () => {
   }, [getItem]);
 
   const onSend = () => {
-    event.mutate();
+    const num = Number(data) + 1;
+    console.log(num);
+    event.mutate({ text: String(num) });
   };
 
   return (
