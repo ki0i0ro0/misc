@@ -31,7 +31,7 @@ const Home: NextPage = () => {
         <title>test trpc long polling</title>
       </Head>
       <main>
-        {data}
+        <p>{data}</p>
         <button onClick={onSend}>test</button>
       </main>
     </>
