@@ -19,6 +19,7 @@ model Post {
   published Boolean  @default(false)
   author    User     @relation(fields: [authorId], references: [id])
   authorId  Int
+  // test      String? テスト時にコメントを外す
 }
 
 model Profile {
