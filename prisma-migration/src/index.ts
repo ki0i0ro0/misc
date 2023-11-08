@@ -2,7 +2,13 @@ import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
-async function main() {}
+async function main() {
+  setInterval(async () => {
+    const users = await get();
+    const num = Number(users[0].posts[0].content ?? 0) + 1;
+    await update(num);
+  }, 1500);
+}
 
 async function get() {
   const allUsers = await prisma.user.findMany({
@@ -15,25 +21,10 @@ async function get() {
   return allUsers;
 }
 
-async function create() {
-  await prisma.user.create({
-    data: {
-      name: "Alice",
-      email: "alice@prisma.io",
-      posts: {
-        create: { title: "Hello World" },
-      },
-      profile: {
-        create: { bio: "I like turtles" },
-      },
-    },
-  });
-}
-
-async function update() {
+async function update(num: number) {
   const post = await prisma.post.update({
     where: { id: 1 },
-    data: { published: true },
+    data: { content: num.toString() },
   });
   console.log(post);
 }
