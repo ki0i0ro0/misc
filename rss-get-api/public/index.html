@@ -10,7 +10,13 @@
       contents.
     </p>
     <script>
-      let viewXML = (xmlDocument) => {
+      const separator = (xmlDocuments) => {
+        const arrayDocuments = JSON.parse(xmlDocuments);
+        arrayDocuments.forEach((xmlDocument) => {
+          viewXML(xmlDocument);
+        });
+      };
+      const viewXML = (xmlDocument) => {
         //取得した文字列をコンソール出力
         console.log(xmlDocument);
 
@@ -22,20 +28,22 @@
         //HTMLタグの作成
         for (let i = 0; i < rss.length; i++) {
           //RSSから取得したタイトルとリンク情報を格納
-          let rssTitle = rss[i].getElementsByTagName("title")[0].textContent;
-          let rssLink = rss[i].getElementsByTagName("link")[0].textContent;
+          const rssTitle = rss[i].getElementsByTagName("title")[0].textContent;
+          const rssLink = rss[i].getElementsByTagName("link")[0].textContent;
+          const thumbnail =
+            rss[i].getElementsByTagName("media:thumbnail")[0].textContent;
 
           //テンプレート文字列を使ってアンカータグを作成
-          const tagString = `<a href="${rssLink}">${rssTitle}</a><br/>`;
+          const tagString = `<img src=${thumbnail}><a href="${rssLink}">${rssTitle}</a><br/>`;
 
           //body以下にアンカータグを挿入
           document.body.insertAdjacentHTML("beforeend", tagString);
         }
       };
-      const URL = "/rss";
+      const URL = "/api/rss";
       fetch(URL)
         .then((response) => response.text())
-        .then((xmlData) => viewXML(xmlData));
+        .then((xmlData) => separator(xmlData));
     </script>
   </body>
 </html>
