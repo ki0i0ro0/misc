@@ -1,0 +1,33 @@
+# GAE 各種プロパティの説明
+# https://cloud.google.com/appengine/docs/standard/go/config/appref?hl=ja#runtime_and_app_elements
+
+# ランタイムサポート言語・バージョン
+# https://cloud.google.com/appengine/docs/the-appengine-environments?hl=ja#when-to-choose-the-standard-environment
+runtime: nodejs20
+
+# クラス別の実行環境の説明
+# https://cloud.google.com/appengine/docs/standard?hl=ja#instance_classes
+instance_class: F1
+
+service: lp
+
+# オートマティックスケーリングのオプション
+# https://cloud.google.com/appengine/docs/standard/go/config/appref?hl=ja#automatic_scaling
+automatic_scaling:
+  max_instances: 1
+
+# ハンドラのオプション
+# https://cloud.google.com/appengine/docs/standard/go/config/appref?hl=ja#handlers_element
+handlers:
+  - url: /api/.*
+    secure: always
+    script: auto
+
+  - url: /(index\.html)?$|/
+    static_files: public/index.html
+    upload: public/index\.html
+
+  # NOTE: パスマッチしないURLが500エラーの扱いになってしまうので、簡易的な404ページを設置
+  - url: /.*
+    static_files: 404.html
+    upload: 404.html
