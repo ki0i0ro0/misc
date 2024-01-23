@@ -14,8 +14,8 @@ http
   .createServer(async (request, response) => {
     console.log("request ", request.url);
 
-    let filePath = "." + request.url;
-    if (filePath == "./api/rss") {
+    const filePath = `.${request.url}`;
+    if (filePath === "./api/rss") {
       try {
         const results = await Promise.all(
           URLS.map((url) =>
@@ -32,7 +32,7 @@ http
     } else if (process.env.NODE_ENV !== "production") {
       // NOTE: ローカルデモ用機能
       const { demo } = require("./demo");
-      demo(response, filePath);
+      demo(response, request.url);
     } else {
       response.writeHead(404, { "Content-Type": "application/json" });
       response.end("404 - Not Found", "utf-8");

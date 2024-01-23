@@ -3,8 +3,10 @@ const path = require("path");
 
 const demo = (response, rawFilePath) => {
   let filePath = rawFilePath;
-  if (filePath == "./") {
-    filePath = "./public/index.html";
+  if (filePath === "/") {
+    filePath = "./www/index.html";
+  } else {
+    filePath = `./www${rawFilePath}`;
   }
 
   const extname = String(path.extname(filePath)).toLowerCase();
@@ -28,17 +30,17 @@ const demo = (response, rawFilePath) => {
 
   const contentType = mimeTypes[extname] || "application/octet-stream";
 
-  fs.readFile(filePath, function (error, content) {
+  fs.readFile(filePath, (error, content) => {
     if (error) {
-      if (error.code == "ENOENT") {
-        fs.readFile("./404.html", function (_, content) {
+      if (error.code === "ENOENT") {
+        fs.readFile("./404.html", (_, errorContent) => {
           response.writeHead(404, { "Content-Type": "text/html" });
-          response.end(content, "utf-8");
+          response.end(errorContent, "utf-8");
         });
       } else {
         response.writeHead(500);
         response.end(
-          "Sorry, check with the site admin for error: " + error.code + " ..\n"
+          `Sorry, check with the site admin for error: ${error.code} ..\n`
         );
       }
     } else {
