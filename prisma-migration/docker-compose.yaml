@@ -1,16 +1,9 @@
-version: "3"
-
-volumes:
-  db-data:
-
 services:
   db:
-    image: postgres:14
-    container_name: blog-training-db
-    volumes:
-      - db-data:/var/lib/postgresql/blog_training_db_development/data
+    image: postgres:15
     ports:
-      - "5432:5432"
+      - 5432:5432
     environment:
-      POSTGRES_USER: johndoe
-      POSTGRES_PASSWORD: randompassword
+      - POSTGRES_DB=mydb
+      - POSTGRES_USER=johndoe
+      - POSTGRES_PASSWORD=randompassword
