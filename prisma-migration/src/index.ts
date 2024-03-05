@@ -3,7 +3,7 @@ import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
 async function main() {
-  setInterval(async () => {
+  setTimeout(async () => {
     const users = await get();
     const num = Number(users[0].posts[0].content ?? 0) + 1;
     await update(num);
