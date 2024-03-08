@@ -5,3 +5,5 @@ WORKDIR /app
 COPY . ./
 
 RUN npm install --omit=dev
+
+CMD ["npx","prisma","migrate","deploy"]
