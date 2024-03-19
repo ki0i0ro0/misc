@@ -1,0 +1,31 @@
+steps:
+  # Docker Build
+  - name: "gcr.io/cloud-builders/docker"
+    args:
+      [
+        "build",
+        "-t",
+        "asia-docker.pkg.dev/${PROJECT_ID}/asia.gcr.io/prisma-migration",
+        ".",
+      ]
+
+  # Docker Push(Artifact Registry)
+  - name: "gcr.io/cloud-builders/docker"
+    args:
+      ["push", "asia-docker.pkg.dev/${PROJECT_ID}/asia.gcr.io/prisma-migration"]
+
+  # Cloud Run Jobs Deploy
+  - name: "gcr.io/google.com/cloudsdktool/cloud-sdk"
+    entrypoint: gcloud
+    args:
+      [
+        "run",
+        "jobs",
+        "deploy",
+        "prisma-migration-job",
+        "--image",
+        "asia-docker.pkg.dev/${PROJECT_ID}/asia.gcr.io/prisma-migration",
+        "--region",
+        "asia-northeast1",
+        "--execute-now",
+      ]

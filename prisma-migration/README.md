@@ -27,6 +27,25 @@ npm start
 npm run deploy
 ```
 
+## Cloud Build コマンド
+
+```sh
+# ログイン
+gcloud auth login
+
+# Google Cloud SDK を使ったアプリケーションのための認証
+gcloud auth application-default login
+
+# 構成を一覧表示
+gcloud config configurations list
+
+# プロパティを設定
+gcloud config set project [project_name]
+
+# Cloud Build実行
+gcloud builds submit --config ./cloudbuild.yaml
+```
+
 ## appendix
 
 ```sh
