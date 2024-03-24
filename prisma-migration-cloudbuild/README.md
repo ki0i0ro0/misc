@@ -40,10 +40,22 @@ gcloud auth application-default login
 gcloud config configurations list
 
 # プロパティを設定
-gcloud config set project [project_name]
+gcloud config set project [PROJECT_ID]
 
 # Cloud Build実行
 gcloud builds submit --config ./cloudbuild.yaml
+```
+
+## terraform コマンド
+
+```sh
+terraform init
+
+terraform plan
+
+terraform apply
+
+terraform destroy
 ```
 
 ## appendix
