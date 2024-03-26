@@ -10,25 +10,21 @@ terraform {
 data "google_project" "project" {
 }
 
-# Enable Secret Manager API
 resource "google_project_service" "secretmanager_api" {
   service            = "secretmanager.googleapis.com"
   disable_on_destroy = false
 }
 
-# Enable SQL Admin API
 resource "google_project_service" "sqladmin_api" {
   service            = "sqladmin.googleapis.com"
   disable_on_destroy = false
 }
 
-# Enable Cloud Run API
 resource "google_project_service" "cloudrun_api" {
   service            = "run.googleapis.com"
   disable_on_destroy = false
 }
 
-# Creates SQL instance (~15 minutes to fully spin up)
 resource "google_sql_database_instance" "instance" {
   name             = "postgres-instance"
   region           = "asia-northeast1"
@@ -36,8 +32,6 @@ resource "google_sql_database_instance" "instance" {
   settings {
     tier = "db-f1-micro"
   }
-  # set `deletion_protection` to true, will ensure that one cannot accidentally delete this instance by
-  # use of Terraform whereas `deletion_protection_enabled` flag protects this instance at the GCP level.
   deletion_protection = false
   depends_on          = [google_project_service.sqladmin_api]
 }
@@ -75,7 +69,6 @@ resource "google_secret_manager_secret_iam_member" "secretaccess_compute_db_url"
 resource "google_cloud_run_v2_service" "default" {
   name     = "cloudrun-service"
   location = "asia-northeast1"
-
   template {
     containers {
       image = "us-docker.pkg.dev/cloudrun/container/hello:latest"
@@ -97,6 +90,5 @@ resource "google_cloud_run_v2_service" "default" {
     }
   }
   client     = "terraform"
-
   depends_on = [google_project_service.secretmanager_api, google_project_service.cloudrun_api, google_project_service.sqladmin_api]
 }
