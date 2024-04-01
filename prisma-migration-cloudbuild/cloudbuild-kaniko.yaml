@@ -2,6 +2,6 @@ steps:
   - name: "gcr.io/kaniko-project/executor:latest"
     args:
       [
-        "--destination=asia-docker.pkg.dev/${PROJECT_ID}/asia.gcr.io/prisma-migration",
+        "--destination=asia-docker.pkg.dev/${PROJECT_ID}/asia.gcr.io/prisma-migration:latest",
         "--cache=true",
       ]
