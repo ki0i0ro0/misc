@@ -1,0 +1,10 @@
+{
+  "recommendations": [
+    "esbenp.prettier-vscode",
+    "jock.svg",
+    "mikestead.dotenv",
+    "mhutchie.git-graph",
+    "ms-azuretools.vscode-docker",
+    "streetsidesoftware.code-spell-checker"
+  ]
+}
