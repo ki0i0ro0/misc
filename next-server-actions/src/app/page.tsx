@@ -5,11 +5,11 @@ export default function Home() {
   const testAction = async () => {
     "use server";
 
-    console.log("FormAction開始");
+    console.log("submit開始");
 
     await new Promise((resolve) => setTimeout(resolve, 500));
 
-    console.log("FormAction完了");
+    console.log("submit完了");
   };
 
   return (
@@ -17,7 +17,7 @@ export default function Home() {
       <main className={styles.main}>
         <div className={styles.ctas}>
           <form action={testAction}>
-            <button type="submit">form</button>
+            <button type="submit">submit</button>
           </form>
           <CustomButton />
         </div>
