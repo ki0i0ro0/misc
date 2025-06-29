@@ -1,0 +1,12 @@
+{
+  "mcp": {
+    "inputs": [],
+    "servers": {
+      "my-mcp-server": {
+        "command": "node",
+        "args": ["C:/Users/ki0i0/git/misc/mcp-example/build/index.js"]
+      }
+    }
+  },
+  "github.copilot.chat.localeOverride": "ja"
+}
